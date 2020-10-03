@@ -9,13 +9,13 @@ using UnityEngine;
 public class SimpleRead : MonoBehaviour
 {
 
-    public List<double> SolverTime;// = new List<double>();
-    public List<double>[] OperatingValues;// = new List<double>[JointNuber];
+    public List<double> SolverTime;
+    public List<double>[] OperatingValues;
 
     public int JointNuber = 2;
 
     public string path = "data.txt";
-    // Start is called before the first frame update
+
     void Awake()
     {
         GetMatlabData();
@@ -42,7 +42,6 @@ public class SimpleRead : MonoBehaviour
         foreach (string line in File.ReadLines(path, Encoding.UTF8))
         {
             string[] parts = line.Split(' ');
-            // Start from 1 because time gets 0 word
 
             for (int i = 0; i <= parts.Length; i++)
             {

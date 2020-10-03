@@ -66,22 +66,22 @@
     <Compile Include="Assets\RTS_Camera\Scripts\Editor\LayoutHelpers.cs" />
     <Compile Include="Assets\RTS_Camera\Scripts\Editor\RTS_CameraEditor.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>F:/Unity-Projects/2019.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -288,19 +288,19 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>F:/Users/Ja/Desktop/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>F:/Users/Ja/Documents/Git/Prepraration_Cell_Viewer/PrepCellViewer/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>F:/Unity-Projects/2019.1.10f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

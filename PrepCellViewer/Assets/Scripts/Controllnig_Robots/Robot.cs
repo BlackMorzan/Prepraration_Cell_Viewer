@@ -5,4 +5,5 @@ using UnityEngine;
 public class Robot : MonoBehaviour
 {
     // TODO send data form RoboController to each joint
+    public ControlJoint[] Joints;
 }

@@ -42,7 +42,7 @@ public class MatlabMove : MonoBehaviour
 
     private void RobotRotate()
     {
-        this.transform.Rotate(0, 0, -angleZ, Space.Self); // reset position before turning
+        transform.Rotate(0, 0, -angleZ, Space.Self); // reset position before turning
 
         angleZ = Convert.ToSingle(X.OperatingValues[JointNumber].ElementAt(CurrentTime++));
 
