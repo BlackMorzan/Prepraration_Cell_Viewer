@@ -103,6 +103,7 @@ namespace RoboController
             }
         }
 
+        
         private void PlayMatlab()
         {
             if (RobotArray[CurrentRobot].Joints.Length != MatlabInput.OperatingValues.Length)
@@ -143,7 +144,14 @@ namespace RoboController
         IEnumerator CoWaitToMove(float waitDuation)
         {
             CanMoveCorutine = false;
-            CurrentPath.AddPathPoint();
+            // IT IS VERY TEMPORARY!!!!
+            float newSpeed = (CurrentPath.GetRobotEndPoint().transform.position - CurrentPath.GetLastPosition()).magnitude;
+            CurrentPath.SetLastPosition(CurrentPath.GetRobotEndPoint().transform.position);
+
+            Debug.Log(newSpeed*Speed);
+
+            if (CurrentTime != 0)
+                CurrentPath.AddPathPoint(CurrentPath.SpeedToColor(newSpeed*Speed));
 
             yield return new WaitForSeconds(waitDuation);
             CanMoveCorutine = true;
