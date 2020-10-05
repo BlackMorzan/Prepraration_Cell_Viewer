@@ -9,7 +9,7 @@ public class ShowPath : MonoBehaviour
     public GameObject PathParent;
     public void AddPathPoint()
     {
-        Instantiate(PathPrefab, RobotEndPoint.transform.position, Quaternion.identity);
+        Instantiate(PathPrefab, RobotEndPoint.transform.position, Quaternion.identity, PathParent.transform);
     }
 
     public void NewRobotEndpiont(GameObject NewEndpoint)

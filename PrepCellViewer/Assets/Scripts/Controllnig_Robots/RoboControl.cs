@@ -47,8 +47,11 @@ namespace RoboController
                 PlayMatlab();
                 CurrentTime++;
             }
-            if (MatlabInput.SolverTime.Count()-1 <= CurrentTime) // reset timer
+            if (MatlabInput.SolverTime.Count() - 1 <= CurrentTime) // reset timer
+            {
                 CurrentTime = 0;
+                CurrentPath.KillAllPathPoints();
+            }
         }
 
         public void ChangeRobotOnClick()
@@ -140,6 +143,7 @@ namespace RoboController
         IEnumerator CoWaitToMove(float waitDuation)
         {
             CanMoveCorutine = false;
+            CurrentPath.AddPathPoint();
 
             yield return new WaitForSeconds(waitDuation);
             CanMoveCorutine = true;
