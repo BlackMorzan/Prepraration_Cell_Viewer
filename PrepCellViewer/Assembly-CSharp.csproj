@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Controllnig_Robots\JointControl\RotateJoint.cs" />
     <Compile Include="Assets\Scripts\Controllnig_Robots\JointControl\TranslateJoint.cs" />
     <Compile Include="Assets\Scripts\Controllnig_Robots\MatlabMove.cs" />
+    <Compile Include="Assets\Scripts\Controllnig_Robots\Path\ShowPath.cs" />
     <Compile Include="Assets\Scripts\Controllnig_Robots\RoboControl.cs" />
     <Compile Include="Assets\Scripts\Controllnig_Robots\Robot.cs" />
     <Compile Include="Assets\Scripts\FastIK\FastIKCCD.cs" />
