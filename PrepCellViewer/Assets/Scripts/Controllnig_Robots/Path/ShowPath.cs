@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShowPath : MonoBehaviour
 {
     public GameObject PathPrefab;
-    public GameObject RobotEndPoint;
+    private GameObject RobotEndPoint;
     public GameObject PathParent;
     public void AddPathPoint()
     {
@@ -29,30 +29,34 @@ public class ShowPath : MonoBehaviour
             Debug.Log(child.name);
     }
 
-    private void Start()
+    public GameObject GetEfector(GameObject FindIn)
     {
-        FindAllPathPoints();
+        return GetChildRecursive(FindIn, "Efector");
     }
 
-    private static GameObject FindInChild(Transform startPonit, string tag)
+    private GameObject GetChildRecursive(GameObject obj, string searchTag)
     {
-        // chcek current transform
-        if (startPonit.tag == tag)
+        GameObject foundIt;
+        if (obj.tag == searchTag)
+            return obj;
+
+        if (null == obj)
+            return null;
+
+        foreach (Transform child in obj.transform)
         {
-            return startPonit.transform.gameObject;
+            if (null == child)
+                continue;
+
+            if (child.tag == searchTag)
+                return child.gameObject;
+
+            foundIt = GetChildRecursive(child.gameObject, searchTag);
+            if (foundIt != null)
+                return foundIt;
         }
 
-        // chcek all child
-        while (startPonit.parent != null)
-        {
-            if (startPonit.parent.tag == tag)
-            {
-                return startPonit.transform.parent.transform.gameObject;
-            }
-            startPonit = startPonit.parent.transform;
-        }
-
-        return null; // Could not find a parent with given tag.
+        return null;
     }
 }
 

@@ -16,6 +16,8 @@ namespace RoboController
 
         public SimpleRead MatlabInput;
 
+        public ShowPath CurrentPath;
+
         public int CurrentRobot = 0;
         public int TypeOfControl = 0;
         public float Speed = 1;
@@ -29,10 +31,13 @@ namespace RoboController
         
         public void Awake()
         {
+
             foreach (var i in RobotArray) // disable all robots but Agilus
                 i.gameObject.SetActive(false);
 
             RobotArray[0].gameObject.SetActive(true);
+            // Find active robot on awake
+            CurrentPath.NewRobotEndpiont(CurrentPath.GetEfector(RobotArray[0].gameObject));
         }
         
         private void Update()
@@ -64,6 +69,10 @@ namespace RoboController
 
             CurrentTime = 0; // to reset timer after changing robot
             DisplaySliders();
+
+            // Change showed path
+            CurrentPath.KillAllPathPoints();
+            CurrentPath.NewRobotEndpiont(CurrentPath.GetEfector(RobotArray[CurrentRobot].gameObject));
         }
 
         public void ChangeControlOnClick()
