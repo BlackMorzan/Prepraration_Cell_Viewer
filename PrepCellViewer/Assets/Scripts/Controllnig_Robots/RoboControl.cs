@@ -144,14 +144,11 @@ namespace RoboController
         IEnumerator CoWaitToMove(float waitDuation)
         {
             CanMoveCorutine = false;
-            // IT IS VERY TEMPORARY!!!!
-            float newSpeed = (CurrentPath.GetRobotEndPoint().transform.position - CurrentPath.GetLastPosition()).magnitude;
-            CurrentPath.SetLastPosition(CurrentPath.GetRobotEndPoint().transform.position);
 
-            Debug.Log(newSpeed*Speed);
-
-            if (CurrentTime != 0)
-                CurrentPath.AddPathPoint(CurrentPath.SpeedToColor(newSpeed*Speed));
+            if (CurrentTime == 0)
+                CurrentPath.SetLastPosition(CurrentPath.GetRobotEndPoint().transform.position);
+            else
+                CurrentPath.AddPathPoint(CurrentPath.SpeedToColor(Speed));
 
             yield return new WaitForSeconds(waitDuation);
             CanMoveCorutine = true;

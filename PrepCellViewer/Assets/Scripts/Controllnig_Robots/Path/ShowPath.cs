@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,7 +13,6 @@ public class ShowPath : MonoBehaviour
     private GameObject RobotEndPoint;
 
     private Vector3 LastPosition;
-    private float Speed = 0;
     private Color PathPointColor;
 
     //PathPrefab.GetComponent<MeshRenderer>().material.color;
@@ -27,11 +27,6 @@ public class ShowPath : MonoBehaviour
         PathPointColor = Color.green;
     }
 
-    //void FixedUpdate()
-    //{
-    //    Speed = (RobotEndPoint.transform.position - lastPosition).magnitude;
-    //    lastPosition = RobotEndPoint.transform.position;
-    //}
     public void AddPathPoint()
     {
         Instantiate(PathPrefab, RobotEndPoint.transform.position, Quaternion.identity, PathParent.transform);
@@ -47,8 +42,10 @@ public class ShowPath : MonoBehaviour
 
     public Color SpeedToColor(float SpeedModifier)
     {
-        //Debug.Log( Speed * SpeedModifier);
-        float currentSpeed = (SpeedModifier) / (MaxSpeed);
+        float newSpeed = (RobotEndPoint.transform.position - LastPosition).magnitude;
+        LastPosition = RobotEndPoint.transform.position;
+
+        float currentSpeed = (SpeedModifier*newSpeed) / (MaxSpeed);
 
 
         if (currentSpeed <= 0.5)
