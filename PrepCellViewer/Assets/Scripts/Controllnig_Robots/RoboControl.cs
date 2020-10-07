@@ -146,7 +146,7 @@ namespace RoboController
             CanMoveCorutine = false;
 
             if (CurrentTime == 0)
-                CurrentPath.SetLastPosition(CurrentPath.GetRobotEndPoint().transform.position);
+                CurrentPath.StartPath();
             else
                 CurrentPath.AddPathPoint(CurrentPath.SpeedToColor(Speed));
 

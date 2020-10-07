@@ -15,7 +15,8 @@ public class ShowPath : MonoBehaviour
     private Vector3 LastPosition;
     private Color PathPointColor;
 
-    //PathPrefab.GetComponent<MeshRenderer>().material.color;
+    private float MaxRed = 21, CurrentRed;
+
     public GameObject GetRobotEndPoint() { return RobotEndPoint; }
     public Vector3 GetLastPosition() { return LastPosition; }
 
@@ -35,30 +36,32 @@ public class ShowPath : MonoBehaviour
     public void AddPathPoint(Color newColor)
     {
         GameObject Tmp = Instantiate(PathPrefab, RobotEndPoint.transform.position, Quaternion.identity, PathParent.transform);
-        //Tmp.GetComponent<MeshRenderer>.
-        //Tmp.GetComponent<MeshRenderer>().
+        
         Tmp.GetComponent<MeshRenderer>().material.color = newColor;
+        Tmp.GetComponent<MeshRenderer>().material.SetFloat("_Smoothness", 0);
     }
+
+    // Special Class? -----------------------------------------------------------------------
 
     public Color SpeedToColor(float SpeedModifier)
     {
         float newSpeed = (RobotEndPoint.transform.position - LastPosition).magnitude;
         LastPosition = RobotEndPoint.transform.position;
 
-        float currentSpeed = (SpeedModifier*newSpeed) / (MaxSpeed);
+        float currentSpeed = (SpeedModifier * newSpeed) / (CurrentRed);
 
 
         if (currentSpeed <= 0.5)
         {
             PathPointColor.g = 1;
-            PathPointColor.r = currentSpeed*2; // needs to go twice fast - it would used just 0.5 of color 
+            PathPointColor.r = currentSpeed * 2; // needs to go twice fast - it would used just 0.5 of color 
             PathPointColor.b = 0;              // it would be (0, 0.5> we would use half spectrum
             PathPointColor.a = 1f;
         }
 
         if (currentSpeed > 0.5)
         {
-            PathPointColor.g = 2-(currentSpeed*2); // goes from 0=2-(1*2) to 1=2-(0.5*2)
+            PathPointColor.g = 2 - (currentSpeed * 2); // goes from 0=2-(1*2) to 1=2-(0.5*2)
             PathPointColor.r = 1;
             PathPointColor.b = 0;
             PathPointColor.a = 1f;
@@ -66,6 +69,14 @@ public class ShowPath : MonoBehaviour
 
         return PathPointColor;
     }
+
+    public void StartPath()
+    {
+        LastPosition = RobotEndPoint.transform.position;
+        CurrentRed = MaxRed;
+    }
+
+    // to there -----------------------------------------------------------------------------
 
     public void NewRobotEndpiont(GameObject NewEndpoint)
     {
@@ -112,6 +123,11 @@ public class ShowPath : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void MaxRedValue(float newMax) // change joint by slider
+    {
+        MaxRed = newMax;
     }
 }
 
