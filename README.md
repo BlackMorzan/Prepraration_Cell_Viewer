@@ -25,6 +25,6 @@ Dodawanie robotów to najbardziej czasochłonny i najmniej zautomatyzowany syste
 ## ScreenShoty
 
 
-![SS1](https://github.com/BlackMorzan/Prepraration_Cell_Viewer/blob/master/PrepCellViewer/SS_PCV/PCV_SS_3.png)
-![SS2](https://github.com/BlackMorzan/Prepraration_Cell_Viewer/blob/master/PrepCellViewer/SS_PCV/PCV_SS_1.png)
-![SS3](https://github.com/BlackMorzan/Prepraration_Cell_Viewer/blob/master/PrepCellViewer/SS_PCV/PCV_SS_2.png)
+![SS1](https://github.com/BlackMorzan/Prepraration_Cell_Viewer/blob/master/Photos/PCV_SS_1.png)
+![SS2](https://github.com/BlackMorzan/Prepraration_Cell_Viewer/blob/master/Photos/PCV_SS_2.png)
+![SS3](https://github.com/BlackMorzan/Prepraration_Cell_Viewer/blob/master/Photos/PCV_SS_3.png)
