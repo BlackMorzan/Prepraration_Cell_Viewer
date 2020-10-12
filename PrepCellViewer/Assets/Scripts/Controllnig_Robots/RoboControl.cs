@@ -64,7 +64,8 @@ namespace RoboController
 
             RobotArray[CurrentRobot].gameObject.SetActive(true);
 
-            for (int i = 0; RobotArray[CurrentRobot].Joints.Length > i; i++) // stting max & min to sliders
+
+            for (int i = 0; RobotArray[CurrentRobot].Joints.Length > i; i++) // setting max & min to sliders
             {
                 SliderArray[i].GetComponent<Slider>().maxValue = RobotArray[CurrentRobot].Joints[i].MaxValue;
                 SliderArray[i].GetComponent<Slider>().minValue = RobotArray[CurrentRobot].Joints[i].MinValue;
