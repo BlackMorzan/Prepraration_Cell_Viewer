@@ -1512,7 +1512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &274168018
 Transform:
   m_ObjectHideFlags: 0
@@ -1878,8 +1878,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SolverTime: []
-  JointNuber: 2
-  path: data2.txt
+  JointNuber: 3
+  path: data4.txt
 --- !u!4 &360695267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 00803d281bbcf7945994edf94658e0be,
@@ -2035,7 +2035,6 @@ Transform:
   m_LocalPosition: {x: 0, y: -0, z: 4.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1538928946}
   - {fileID: 1194878237}
   m_Father: {fileID: 2100748221}
   m_RootOrder: 3
@@ -2392,7 +2391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526752314}
   m_LocalRotation: {x: -0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 3.1000013, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2100748221}
@@ -3598,7 +3597,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Change Mode
 --- !u!222 &755490717
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5832,7 +5831,7 @@ Transform:
   m_GameObject: {fileID: 1071874676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5.89}
-  m_LocalScale: {x: 0.59958, y: 0.71865, z: 7.339838}
+  m_LocalScale: {x: 0.59958, y: 0.71865, z: 17.931957}
   m_Children: []
   m_Father: {fileID: 2100748221}
   m_RootOrder: 2
@@ -6819,8 +6818,9 @@ Transform:
   m_Children:
   - {fileID: 1011040429}
   - {fileID: 1800539168}
+  - {fileID: 1538928946}
   m_Father: {fileID: 443543541}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1194878238
 MonoBehaviour:
@@ -6834,7 +6834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99abfac62e8938459c2f25b5f8ddda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxValue: 1
+  MaxValue: 10
   MinValue: 0
 --- !u!1 &1196488085
 GameObject:
@@ -6906,7 +6906,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Change Robot
 --- !u!222 &1196488088
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8858,11 +8858,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538928945}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.18199983}
-  m_LocalScale: {x: 1.7544016, y: 1.4710706, z: 0.86607856}
+  m_LocalPosition: {x: 0.91, y: 0, z: 0.010001034}
+  m_LocalScale: {x: 1.7544035, y: 1.4710711, z: 0.86607903}
   m_Children: []
-  m_Father: {fileID: 443543541}
-  m_RootOrder: 0
+  m_Father: {fileID: 1194878237}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1538928947
 BoxCollider:
@@ -10511,7 +10511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxValue: 180
-  MinValue: 180
+  MinValue: -180
 --- !u!1001 &1816712130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11918,7 +11918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2100748221
 Transform:
   m_ObjectHideFlags: 0
