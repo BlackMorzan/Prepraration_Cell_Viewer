@@ -5,10 +5,14 @@ ScriptsOnlyBuild:
     - DisplayAngle
     - QuitButton
     - RTS_Cam.RTS_Camera
+    - RoboController.RoboControl
+    - Robot
     - RotateJoint
+    - RotateingJoint
+    - ShowPath
+    - SimpleRead
     - TargetSelector
-    UnityEditor.TestRunner.dll:
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
+    - TranslateJoint
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -46,40 +50,50 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 92
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9374}
+      Script: {instanceID: 9340}
     - Class: 114
       Script: {instanceID: 9376}
     - Class: 114
-      Script: {instanceID: 9382}
+      Script: {instanceID: 9378}
     - Class: 114
-      Script: {instanceID: 9388}
+      Script: {instanceID: 9384}
     - Class: 114
-      Script: {instanceID: 9396}
+      Script: {instanceID: 9390}
     - Class: 114
-      Script: {instanceID: 9430}
+      Script: {instanceID: 9398}
     - Class: 114
       Script: {instanceID: 9432}
     - Class: 114
       Script: {instanceID: 9434}
     - Class: 114
-      Script: {instanceID: 9618}
+      Script: {instanceID: 9436}
     - Class: 114
-      Script: {instanceID: 9690}
+      Script: {instanceID: 9620}
     - Class: 114
-      Script: {instanceID: 9914}
+      Script: {instanceID: 9628}
     - Class: 114
-      Script: {instanceID: 10008}
+      Script: {instanceID: 9656}
     - Class: 114
-      Script: {instanceID: 10462}
+      Script: {instanceID: 9696}
     - Class: 114
-      Script: {instanceID: 10514}
+      Script: {instanceID: 9924}
+    - Class: 114
+      Script: {instanceID: 9968}
+    - Class: 114
+      Script: {instanceID: 10020}
+    - Class: 114
+      Script: {instanceID: 10130}
+    - Class: 114
+      Script: {instanceID: 10288}
+    - Class: 114
+      Script: {instanceID: 10480}
+    - Class: 114
+      Script: {instanceID: 10532}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -139,6 +153,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b2f6596548a0e4804ac55f44604bf4fb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Robot
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -337,6 +357,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: UnityEngine.Advertisements.dll
+    namespaceName: UnityEngine.Advertisements
+    className: CallbackExecutor
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: UnityEngine.Advertisements.dll
+    namespaceName: UnityEngine.Advertisements.Editor
+    className: Placeholder
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -555,10 +587,22 @@ ScriptsOnlyBuild:
     className: AnimationTrack
   - hash:
       serializedVersion: 2
+      Hash: fec49676db3a54d35ad27dea045e8c6e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: RoboController
+    className: RoboControl
+  - hash:
+      serializedVersion: 2
       Hash: 00274a21279f5cb831ce20f895049e38
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMeshUI
+  - hash:
+      serializedVersion: 2
+      Hash: 211d4c4541c72a0e7019743b55e26b6a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SimpleRead
   - hash:
       serializedVersion: 2
       Hash: 780e8f682b3221346c034a6712a0fd25
@@ -615,6 +659,12 @@ ScriptsOnlyBuild:
     className: SampleProcedualAnimation
   - hash:
       serializedVersion: 2
+      Hash: 2a061683e54e6f17cc4abddac45abd5a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MatlabMove
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -639,6 +689,12 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
+      Hash: f03974be3becc3758992361b3f6101f9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ControlJoint
+  - hash:
+      serializedVersion: 2
       Hash: 4164ef4012627107f27f1372fce8f203
     assemblyName: Assembly-CSharp.dll
     namespaceName: RTS_Cam
@@ -651,10 +707,16 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: f03974be3becc3758992361b3f6101f9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RotateJoint
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RotateingJoint
   - hash:
       serializedVersion: 2
       Hash: 3f8d7b92a6be3c715e55d5cfa7cc8384
@@ -729,6 +791,12 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: d76ec6b44c6b2b36e5c29e4f21f5e956
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ShowPath
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: DitzelGames.FastIK
@@ -751,6 +819,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioTrack
+  - hash:
+      serializedVersion: 2
+      Hash: f03974be3becc3758992361b3f6101f9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TranslateJoint
   - hash:
       serializedVersion: 2
       Hash: cad04398e103b8acb2f19bcb0923e5e9
@@ -826,4 +900,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Robo1Proj.unity
-  playerPath: C:/Users/ZEUS/Desktop/UnityProjects/PrepCellViewer/Builds/PrepCellViewer.exe
+  playerPath: F:/Users/ja/Documents/Git/Prepraration_Cell_Viewer/PCV_Build/PrepCellViewer.exe

@@ -140,24 +140,24 @@ public class Colision : MonoBehaviour
 
     }
 
-        private static Transform FindParent(Transform childObject, string tag)
+    private static Transform FindParent(Transform childObject, string tag)
+    {
+        Transform t = childObject.transform;
+        // chcek current transform
+        if (t.tag == tag)
         {
-            Transform t = childObject.transform;
-            // chcek current transform
-            if (t.tag == tag)
+            return t.transform;
+        }
+        // chcek all parents
+        while (t.parent != null)
+        {
+            if (t.parent.tag == tag)
             {
-                return t.transform;
+                return t.transform.parent.transform;
             }
-            // chcek all parents
-            while (t.parent != null)
-            {
-                if (t.parent.tag == tag)
-                {
-                    return t.transform.parent.transform;
-                }
-                t = t.parent.transform;
-            }
-            return null; // Could not find a parent with given tag.
+            t = t.parent.transform;
+        }
+        return null; // Could not find a parent with given tag.
     }
 
 }
