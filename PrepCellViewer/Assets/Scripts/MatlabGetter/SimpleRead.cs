@@ -21,6 +21,11 @@ public class SimpleRead : MonoBehaviour
         GetMatlabData();
     }
 
+    public void NewPathFileName()
+    {
+
+    }
+
     private void GetMatlabData()
     {
 
@@ -31,8 +36,8 @@ public class SimpleRead : MonoBehaviour
         {
             OperatingValues[i] = new List<double>();
         }
-        Debug.Log("stage 1");
 
+        // Player needs to know too
         if (!File.Exists(path))
         {
             Debug.Log("read error - no file");
