@@ -4,26 +4,45 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using PlayButton;
 
 public class SimpleRead : MonoBehaviour
 {
 
     public List<double> SolverTime;
     public List<double>[] OperatingValues;
+    public PlayButtons Buttons;
 
-    public int JointNuber = 2;
+    public TMP_InputField DataNameInput;
+    public Slider JointCountInput;
 
-    public string path = "data.txt";
+    private int JointNuber = 2;
+    private string PathFileName = "data.txt";
 
-    void Awake()
+    public void Awake()
     {
-        GetMatlabData();
+        NewPathFileName();
+        NewPathJointCount();
     }
 
     public void NewPathFileName()
     {
+        PathFileName = DataNameInput.text;
+    }
 
+    public void NewPathJointCount()
+    {
+        JointNuber = (int)JointCountInput.value;
+    }
+
+    public void ReadNewDataFromFile()
+    {
+        Debug.Log(JointNuber + " : " + PathFileName);
+        GetMatlabData();
+        Buttons.StopPlay();
     }
 
     private void GetMatlabData()
@@ -38,13 +57,13 @@ public class SimpleRead : MonoBehaviour
         }
 
         // Player needs to know too
-        if (!File.Exists(path))
+        if (!File.Exists(PathFileName))
         {
             Debug.Log("read error - no file");
             return;
         }
 
-        foreach (string line in File.ReadLines(path, Encoding.UTF8))
+        foreach (string line in File.ReadLines(PathFileName, Encoding.UTF8))
         {
             string[] parts = line.Split(' ');
 

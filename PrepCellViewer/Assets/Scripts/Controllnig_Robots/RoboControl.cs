@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using PlayButton;
 
 namespace RoboController
 {
@@ -28,6 +29,30 @@ namespace RoboController
         private IEnumerator coroutine;
         private bool CanMoveCorutine = true;
         private int CurrentTime = 0;
+
+        private bool PlayRobotMove = true;
+        private bool StopRobotMove = false;
+
+        public void StopPathPlay()
+        {
+            StopRobotMove = true;
+            PlayRobotMove = false;
+            MatlabInput.Buttons.StopPlay();
+        }
+
+        public void PausePathPlay()
+        {
+            PlayRobotMove = !PlayRobotMove;
+            if (StopRobotMove)
+                StopRobotMove = false;
+
+            if (PlayRobotMove)
+                MatlabInput.Buttons.StartPlay();
+            else
+                MatlabInput.Buttons.PausePlay();
+
+            Debug.Log(PlayRobotMove + " : " + StopRobotMove);
+        }
         
         public void Awake()
         {
@@ -42,12 +67,13 @@ namespace RoboController
         
         private void Update()
         {
-            if (CanMoveCorutine && PlayMatlabFlag && MatlabInput.SolverTime.Count() > CurrentTime) 
-            { // play form matlab file if corutine ended & called for & withing array 
+            if (CanMoveCorutine && PlayMatlabFlag && MatlabInput.SolverTime.Count() > CurrentTime && PlayRobotMove) 
+            { 
+                // play form matlab file if corutine ended & called for & withing array 
                 PlayMatlab();
                 CurrentTime++;
             }
-            if (MatlabInput.SolverTime.Count() - 1 <= CurrentTime) // reset timer
+            if (MatlabInput.SolverTime.Count() - 1 <= CurrentTime || StopRobotMove) // reset timer
             {
                 CurrentTime = 0;
                 CurrentPath.KillAllPathPoints();
@@ -111,14 +137,31 @@ namespace RoboController
                 return;
 
             // send from MatlabInput[i+1] to joint[i] (0 would be time))
-            for (int i = 0; i <= RobotArray[CurrentRobot].Joints.Length-1; i++)
+            for (int i = 0; i <= RobotArray[CurrentRobot].Joints.Length - 1; i++)
+            {
                 RobotArray[CurrentRobot].Joints[i].JointControl(Convert.ToSingle(MatlabInput.OperatingValues[i].ElementAt(CurrentTime)));
+            }
 
             float coroutineWait = Convert.ToSingle(MatlabInput.SolverTime[CurrentTime+1]
                 - MatlabInput.SolverTime[CurrentTime]) * 1/Speed;
+
             coroutine = CoWaitToMove(coroutineWait); // count corutine timer
 
             StartCoroutine(coroutine);
+        }
+
+        IEnumerator CoWaitToMove(float waitDuation)
+        {
+
+            CanMoveCorutine = false;
+
+            if (CurrentTime == 0)
+                CurrentPath.StartPath();
+            else
+                CurrentPath.AddPathPoint(CurrentPath.SpeedToColor(Speed));
+
+            yield return new WaitForSeconds(waitDuation);
+            CanMoveCorutine = true;
         }
 
         private void DisplaySliders()
@@ -140,19 +183,6 @@ namespace RoboController
                     SliderArray[i].SetActive(true);
                 }
             }
-        }
-
-        IEnumerator CoWaitToMove(float waitDuation)
-        {
-            CanMoveCorutine = false;
-
-            if (CurrentTime == 0)
-                CurrentPath.StartPath();
-            else
-                CurrentPath.AddPathPoint(CurrentPath.SpeedToColor(Speed));
-
-            yield return new WaitForSeconds(waitDuation);
-            CanMoveCorutine = true;
         }
 
     }
