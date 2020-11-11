@@ -30,8 +30,8 @@ namespace RoboController
         private bool CanMoveCorutine = true;
         private int CurrentTime = 0;
 
-        private bool PlayRobotMove = true;
-        private bool StopRobotMove = false;
+        private bool PlayRobotMove = false;
+        private bool StopRobotMove = true;
 
         public void StopPathPlay()
         {
@@ -63,6 +63,8 @@ namespace RoboController
             RobotArray[0].gameObject.SetActive(true);
             // Find active robot on awake
             CurrentPath.NewRobotEndpiont(CurrentPath.GetEfector(RobotArray[0].gameObject));
+            // hide play UI
+            MatlabInput.Buttons.gameObject.SetActive(false);
         }
         
         private void Update()
@@ -103,6 +105,11 @@ namespace RoboController
             // Change showed path
             CurrentPath.KillAllPathPoints();
             CurrentPath.NewRobotEndpiont(CurrentPath.GetEfector(RobotArray[CurrentRobot].gameObject));
+
+            // Stop play
+            PlayRobotMove = false;
+            StopRobotMove = true;
+            MatlabInput.Buttons.StopPlay();
         }
 
         public void ChangeControlOnClick()
@@ -118,6 +125,7 @@ namespace RoboController
                 PlayMatlabFlag = false;
 
             DisplaySliders();
+            DisplayPlayButtons();
         }
 
         public void OnValueChangeZ(float newAngle) // change joint by slider
@@ -185,6 +193,21 @@ namespace RoboController
             }
         }
 
+        private void DisplayPlayButtons()
+        {
+            if (TypeOfControl == 1)
+            {
+                MatlabInput.Buttons.gameObject.SetActive(true);
+            }
+            else
+            {
+                // also stop robot play
+                StopRobotMove = true;
+                PlayRobotMove = false;
+                MatlabInput.Buttons.StopPlay();
+                MatlabInput.Buttons.gameObject.SetActive(false);
+            }
+        }
     }
 
 }
