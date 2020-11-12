@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -8,24 +6,27 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using PlayButton;
+using System.Linq;
 
 public class SimpleRead : MonoBehaviour
 {
-
-    public List<double> SolverTime;
-    public List<double>[] OperatingValues;
     public PlayButtons Buttons;
+    public TextMeshProUGUI NuberOfJoints;
+    public Image LoadDataButton;
+
+    public List<float> SolverTime;
+    public List<float>[] OperatingValues;
 
     public TMP_InputField DataNameInput;
-    public Slider JointCountInput;
 
-    private int JointNuber = 2;
+    private int JointNuber = 0;
     private string PathFileName = "data.txt";
 
     public void Awake()
     {
         NewPathFileName();
         NewPathJointCount();
+        OperatingValues = new List<float>[0];
     }
 
     public void NewPathFileName()
@@ -35,32 +36,33 @@ public class SimpleRead : MonoBehaviour
 
     public void NewPathJointCount()
     {
-        JointNuber = (int)JointCountInput.value;
+        NuberOfJoints.text = "Nuber of joints: " + JointNuber;
     }
 
     public void ReadNewDataFromFile()
     {
-        Debug.Log(JointNuber + " : " + PathFileName);
         GetMatlabData();
         Buttons.StopPlay();
     }
 
     private void GetMatlabData()
     {
-
-        SolverTime = new List<double>();
-        OperatingValues = new List<double>[JointNuber];
-
-        for (int i = 0; i < OperatingValues.Length; i++)
-        {
-            OperatingValues[i] = new List<double>();
-        }
-
         // Player needs to know too
         if (!File.Exists(PathFileName))
         {
+            JointNuber = 0;
+            NewPathJointCount();
             Debug.Log("read error - no file");
+            LoadDataButton.color = Color.red;
             return;
+        }
+
+        SolverTime = new List<float>();
+        OperatingValues = new List<float>[NuberOfWords(File.ReadLines(PathFileName).First())];
+
+        for (int i = 0; i < OperatingValues.Length; i++)
+        {
+            OperatingValues[i] = new List<float>();
         }
 
         foreach (string line in File.ReadLines(PathFileName, Encoding.UTF8))
@@ -79,39 +81,49 @@ public class SimpleRead : MonoBehaviour
             }
         }
 
-        /*
-        int counter = 0;
-        foreach (var i in OperatingValues)
-        {
-            counter++;
-            foreach (double j in i)
-                Debug.Log(counter + " OperatingValues: " + j);
-        }
+        JointNuber = OperatingValues.Length;
+        NewPathJointCount();
 
-        counter = 0;
-        foreach (var i in SolverTime)
-            Debug.Log(counter++ + " Time: " + i);
-        */
-        //double tmpTime = Convert.ToDouble(readText);
-
-        //Debug.Log(String.Format(text));
-
+        LoadDataButton.color = Color.green;
     }
 
-    private double getDouble(string value)
+    private float getDouble(string value)
     {
-        double result;
+        float result;
         
-        if (!double.TryParse(value, System.Globalization.NumberStyles.Any, CultureInfo.CurrentCulture, out result) &&
+        if (!float.TryParse(value, System.Globalization.NumberStyles.Any, CultureInfo.CurrentCulture, out result) &&
             //Then try in US english
-            !double.TryParse(value, System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out result) &&
+            !float.TryParse(value, System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out result) &&
             //Then in neutral language
-            !double.TryParse(value, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out result))
+            !float.TryParse(value, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out result))
         {
-            Debug.LogError("error - cant read double |" + value + "|");
+            LoadDataButton.color = Color.red;
         }
 
         return result;
+    }
+
+    private int NuberOfWords(string text)
+    {
+        int index = 0;
+        int wordCount = -1;
+        while (index < text.Length && char.IsWhiteSpace(text[index]))
+            index++;
+
+        while (index < text.Length)
+        {
+            // check if current char is part of a word
+            while (index < text.Length && !char.IsWhiteSpace(text[index]))
+                index++;
+
+            wordCount++;
+
+            // skip whitespace until next word
+            while (index < text.Length && char.IsWhiteSpace(text[index]))
+                index++;
+        }
+
+        return wordCount;
     }
 }
 

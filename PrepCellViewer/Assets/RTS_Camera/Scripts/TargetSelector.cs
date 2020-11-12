@@ -72,8 +72,6 @@ public class TargetSelector : MonoBehaviour
 
         for (int i = 0; i < t.childCount; i++)
         {
-            //Debug.Log("parent name: " + t.transform + " nuber of childs: " + t.childCount + " child name: " + t.GetChild(i) + " child tag: " + t.GetChild(i).transform.tag + " = " + tag);
-
             if (t.GetChild(i).transform.tag == tag)
             {
                 return t.GetChild(i).transform;

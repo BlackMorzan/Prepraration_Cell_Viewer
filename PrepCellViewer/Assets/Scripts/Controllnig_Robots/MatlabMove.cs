@@ -48,11 +48,6 @@ public class MatlabMove : MonoBehaviour
 
         transform.Rotate(0, 0, angleZ, Space.Self); // rotate to new point
 
-        //Debug.Log("Current angle: " + X.OperatingValues[JointNumber]);
-        //Debug.Log("Current Time: " + X.SolverTime[CurrentTime++] + " | ");
-
-        Debug.Log("Current angle: " + X.OperatingValues[JointNumber].ElementAt(CurrentTime));
-
         coroutine = CoWaitToMove(Convert.ToSingle(X.SolverTime[CurrentTime+1] - X.SolverTime[CurrentTime + 1])+Speed);
 
         StartCoroutine(coroutine);

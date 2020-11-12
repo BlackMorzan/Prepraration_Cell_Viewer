@@ -18,13 +18,14 @@ namespace RoboController
         public SimpleRead MatlabInput;
 
         public ShowPath CurrentPath;
-
-        public int CurrentRobot = 0;
-        public int TypeOfControl = 0;
         public float Speed = 1;
 
-        private float[] angleZ = new float[7];
+        public MainControlButtons MControlButtons;
 
+        private int CurrentRobot = 0;
+        private int TypeOfControl = 0;
+
+        // connected to corutine
         private bool PlayMatlabFlag = false;
         private IEnumerator coroutine;
         private bool CanMoveCorutine = true;
@@ -32,6 +33,33 @@ namespace RoboController
 
         private bool PlayRobotMove = false;
         private bool StopRobotMove = true;
+
+        public void Awake()
+        {
+            foreach (var i in RobotArray) // disable all robots but Agilus
+                i.gameObject.SetActive(false);
+
+            RobotArray[0].gameObject.SetActive(true);
+            // Find active robot on awake
+            CurrentPath.NewRobotEndpiont(CurrentPath.GetEfector(RobotArray[0].gameObject));
+            // hide play UI
+            MatlabInput.Buttons.gameObject.SetActive(false);
+        }
+
+        private void Update()
+        {
+            if (CanMoveCorutine && PlayMatlabFlag && MatlabInput.SolverTime.Count() > CurrentTime && PlayRobotMove)
+            {
+                // play form matlab file if corutine ended & called for & withing array 
+                PlayMatlab();
+                CurrentTime++;
+            }
+            if (MatlabInput.SolverTime.Count() - 1 <= CurrentTime || StopRobotMove) // reset timer
+            {
+                CurrentTime = 0;
+                CurrentPath.KillAllPathPoints();
+            }
+        }
 
         public void StopPathPlay()
         {
@@ -50,36 +78,6 @@ namespace RoboController
                 MatlabInput.Buttons.StartPlay();
             else
                 MatlabInput.Buttons.PausePlay();
-
-            Debug.Log(PlayRobotMove + " : " + StopRobotMove);
-        }
-        
-        public void Awake()
-        {
-
-            foreach (var i in RobotArray) // disable all robots but Agilus
-                i.gameObject.SetActive(false);
-
-            RobotArray[0].gameObject.SetActive(true);
-            // Find active robot on awake
-            CurrentPath.NewRobotEndpiont(CurrentPath.GetEfector(RobotArray[0].gameObject));
-            // hide play UI
-            MatlabInput.Buttons.gameObject.SetActive(false);
-        }
-        
-        private void Update()
-        {
-            if (CanMoveCorutine && PlayMatlabFlag && MatlabInput.SolverTime.Count() > CurrentTime && PlayRobotMove) 
-            { 
-                // play form matlab file if corutine ended & called for & withing array 
-                PlayMatlab();
-                CurrentTime++;
-            }
-            if (MatlabInput.SolverTime.Count() - 1 <= CurrentTime || StopRobotMove) // reset timer
-            {
-                CurrentTime = 0;
-                CurrentPath.KillAllPathPoints();
-            }
         }
 
         public void ChangeRobotOnClick()
@@ -110,6 +108,12 @@ namespace RoboController
             PlayRobotMove = false;
             StopRobotMove = true;
             MatlabInput.Buttons.StopPlay();
+
+            // Hide buttons if cant use robot
+            DisplayPlayButtons();
+
+            // Change robot label
+            MControlButtons.ChangeDisplayedRobotLabel(RobotArray[CurrentRobot].name);
         }
 
         public void ChangeControlOnClick()
@@ -126,6 +130,7 @@ namespace RoboController
 
             DisplaySliders();
             DisplayPlayButtons();
+            MControlButtons.ChangeDisplayedModeLabel(TypeOfControl);
         }
 
         public void OnValueChangeZ(float newAngle) // change joint by slider
@@ -138,19 +143,30 @@ namespace RoboController
             }
         }
 
+        public void NewDataLoaded()
+        {
+            DisplayPlayButtons();
+        }
         
         private void PlayMatlab()
         {
-            if (RobotArray[CurrentRobot].Joints.Length != MatlabInput.OperatingValues.Length)
+            if (MatlabInput.SolverTime[CurrentTime] == MatlabInput.SolverTime[CurrentTime + 1] && CurrentTime != 0)
+            {
                 return;
+            }
+
+            for (int i = 0; i <= RobotArray[CurrentRobot].Joints.Length - 1; i++)
+            {
+                RobotArray[CurrentRobot].Joints[i].JointControl(MatlabInput.OperatingValues[i].ElementAt(CurrentTime));
+            }
 
             // send from MatlabInput[i+1] to joint[i] (0 would be time))
             for (int i = 0; i <= RobotArray[CurrentRobot].Joints.Length - 1; i++)
             {
-                RobotArray[CurrentRobot].Joints[i].JointControl(Convert.ToSingle(MatlabInput.OperatingValues[i].ElementAt(CurrentTime)));
+                RobotArray[CurrentRobot].Joints[i].JointControl(MatlabInput.OperatingValues[i].ElementAt(CurrentTime));
             }
 
-            float coroutineWait = Convert.ToSingle(MatlabInput.SolverTime[CurrentTime+1]
+            float coroutineWait = (MatlabInput.SolverTime[CurrentTime+1]
                 - MatlabInput.SolverTime[CurrentTime]) * 1/Speed;
 
             coroutine = CoWaitToMove(coroutineWait); // count corutine timer
@@ -160,7 +176,6 @@ namespace RoboController
 
         IEnumerator CoWaitToMove(float waitDuation)
         {
-
             CanMoveCorutine = false;
 
             if (CurrentTime == 0)
@@ -195,7 +210,8 @@ namespace RoboController
 
         private void DisplayPlayButtons()
         {
-            if (TypeOfControl == 1)
+            
+            if (TypeOfControl == 1 && RobotArray[CurrentRobot].Joints.Length == MatlabInput.OperatingValues.Length)
             {
                 MatlabInput.Buttons.gameObject.SetActive(true);
             }
