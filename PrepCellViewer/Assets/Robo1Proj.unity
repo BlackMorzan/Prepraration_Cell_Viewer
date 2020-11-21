@@ -5962,7 +5962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxValue: 170
-  MinValue: 170
+  MinValue: -170
 --- !u!1 &974540535
 GameObject:
   m_ObjectHideFlags: 0
