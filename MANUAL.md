@@ -30,13 +30,13 @@ czas q1 q2
 
 # UI!
 
-[S1](https://github.com/BlackMorzan/Prepraration_Cell_Viewer/blob/master/Photos/UI.png)
+![S1](https://github.com/BlackMorzan/Prepraration_Cell_Viewer/blob/master/Photos/UI.png)
 
 1. Górny lewy róg (góra) przycisk zmienia robota (niebiski(1))
 2. Górny lewy róg (dół) przycisk zmienia tryb pracy robota (niebieski(1))
- a) tryb pracy manualnej (brąz(4))
- b) tryb otwarzania ścieżki (żółty(2))
- c) brak
+    * tryb pracy manualnej (brąz(4))
+    * tryb otwarzania ścieżki (żółty(2))
+    * brak
 3. Play/Pause - rozpocznij lub zarzymaj odtwarzanie
 4. Stop - przerwij odtwarzanie
 4. Górny prawy róg "Wyjście z programu"
